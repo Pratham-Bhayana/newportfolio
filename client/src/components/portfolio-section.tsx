@@ -7,30 +7,63 @@ import { Badge } from "@/components/ui/badge";
 const projects = [
   {
     title: "Magic Music",
-    description: "Interactive music application built with JavaScript for dynamic user experience.",
+    description: "Interactive music application with advanced audio controls and visualization features built with vanilla JavaScript.",
     image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    tags: ["JavaScript", "Web Audio API", "CSS3"],
-    color: "cyber-blue",
+    tags: ["JavaScript", "Web Audio API", "CSS3", "HTML5"],
+    color: "text-blue-400",
+    borderColor: "border-blue-400",
     link: "https://silver-unicorn-0614dd.netlify.app/",
     category: "Web Development",
   },
   {
     title: "INDI-X",
-    description: "Backend project showcasing advanced server-side development and API architecture.",
+    description: "Advanced backend project featuring robust API architecture and efficient database management systems.",
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    tags: ["Backend", "API", "Database"],
-    color: "neon-pink",
+    tags: ["Backend", "API", "Database", "Node.js"],
+    color: "text-purple-400",
+    borderColor: "border-purple-400",
     link: "https://indi-x.netlify.app/",
     category: "Web Development",
   },
   {
     title: "Writerscapes",
-    description: "Full-featured website project demonstrating comprehensive web development skills.",
+    description: "Comprehensive content management platform with modern UI/UX design and responsive layout optimization.",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    tags: ["HTML5", "CSS3", "JavaScript"],
-    color: "electric-purple",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive"],
+    color: "text-pink-400",
+    borderColor: "border-pink-400",
     link: "https://writerscapes.netlify.app/landing.html",
     category: "Website",
+  },
+  {
+    title: "Portfolio Website",
+    description: "Modern portfolio showcasing frontend development skills with futuristic design and smooth animations.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["React", "TypeScript", "Tailwind", "Framer Motion"],
+    color: "text-cyan-400",
+    borderColor: "border-cyan-400",
+    link: "https://prathambhayana.com",
+    category: "Website",
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "Full-stack e-commerce solution with payment integration and admin dashboard functionality.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    color: "text-green-400",
+    borderColor: "border-green-400",
+    link: "#",
+    category: "Web Development",
+  },
+  {
+    title: "Task Management App",
+    description: "Collaborative project management tool with real-time updates and team collaboration features.",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["Vue.js", "Express", "Socket.io", "PostgreSQL"],
+    color: "text-orange-400",
+    borderColor: "border-orange-400",
+    link: "#",
+    category: "Web Development",
   },
 ];
 
@@ -89,10 +122,10 @@ export default function PortfolioSection() {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
-          {projects.map((project, index) => (
+          {projects.slice(0, 6).map((project, index) => (
             <motion.div
               key={project.title}
-              className={`glass-effect rounded-2xl overflow-hidden group hover:border-${project.color} transition-all duration-300`}
+              className={`glass-effect rounded-2xl overflow-hidden group hover:${project.borderColor} transition-all duration-300`}
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -10 }}
             >
@@ -118,7 +151,7 @@ export default function PortfolioSection() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center text-${project.color} hover:text-white transition-colors`}
+                      className={`inline-flex items-center ${project.color} hover:text-white transition-colors`}
                       whileHover={{ x: 5 }}
                     >
                       <span className="mr-2">View Live</span>
@@ -150,7 +183,7 @@ export default function PortfolioSection() {
                     <Badge
                       key={tag}
                       variant="outline"
-                      className={`border-${project.color}/30 text-${project.color} text-xs`}
+                      className={`${project.borderColor}/30 ${project.color} text-xs`}
                     >
                       {tag}
                     </Badge>

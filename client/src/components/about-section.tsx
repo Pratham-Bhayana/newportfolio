@@ -109,8 +109,15 @@ export default function AboutSection() {
               </p>
               <p className="text-gray-300 leading-relaxed">
                 Hi, I'm Pratham Bhayana, a front-end developer with a flair for blending creativity with technology. 
-                I specialize in crafting visually stunning and highly interactive...
+                I specialize in crafting visually stunning and highly interactive web experiences that push the boundaries of modern design.
               </p>
+              <motion.button
+                className="text-blue-400 hover:text-blue-300 transition-colors text-sm mt-2 underline"
+                onClick={() => window.open('/about', '_blank')}
+                whileHover={{ x: 5 }}
+              >
+                Read More
+              </motion.button>
             </motion.div>
             
             {/* Information Panel */}
