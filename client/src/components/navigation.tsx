@@ -6,8 +6,8 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 const navItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#portfolio", label: "Portfolio" },
   { href: "#services", label: "Services" },
+  { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
