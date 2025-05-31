@@ -200,16 +200,13 @@ export default function PortfolioSection() {
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <motion.a
-            href="/projects"
-            target="_blank"
-            className="inline-block"
+          <motion.button
+            className="glass-effect px-8 py-4 rounded-full border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black transition-all duration-300 bg-transparent"
             whileHover={{ scale: 1.05 }}
+            onClick={() => window.location.href = '/projects'}
           >
-            <Button className="glass-effect px-8 py-4 rounded-full border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 bg-transparent">
-              Click to View More
-            </Button>
-          </motion.a>
+            Click to View More
+          </motion.button>
         </motion.div>
       </div>
     </section>
