@@ -1,51 +1,36 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
-    title: "NeoCorp E-Commerce",
-    description: "Next-generation e-commerce platform with AI-powered recommendations and AR product preview.",
-    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["React", "Three.js", "Node.js"],
+    title: "Magic Music",
+    description: "Interactive music application built with JavaScript for dynamic user experience.",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["JavaScript", "Web Audio API", "CSS3"],
     color: "cyber-blue",
+    link: "https://silver-unicorn-0614dd.netlify.app/",
+    category: "Web Development",
   },
   {
-    title: "DataMind Analytics",
-    description: "AI-powered analytics dashboard with real-time data processing and predictive insights.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["Vue.js", "D3.js", "Python"],
+    title: "INDI-X",
+    description: "Backend project showcasing advanced server-side development and API architecture.",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["Backend", "API", "Database"],
     color: "neon-pink",
+    link: "https://indi-x.netlify.app/",
+    category: "Web Development",
   },
   {
-    title: "FutureChat Mobile",
-    description: "Revolutionary messaging app with holographic video calls and end-to-end encryption.",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["React Native", "WebRTC", "Socket.io"],
+    title: "Writerscapes",
+    description: "Full-featured website project demonstrating comprehensive web development skills.",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+    tags: ["HTML5", "CSS3", "JavaScript"],
     color: "electric-purple",
-  },
-  {
-    title: "CryptoVault Platform",
-    description: "Decentralized trading platform with advanced security and real-time market analysis.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["Solidity", "Web3.js", "Next.js"],
-    color: "cyber-blue",
-  },
-  {
-    title: "MetaSpace VR",
-    description: "Immersive virtual workspace with collaborative tools and spatial computing.",
-    image: "https://images.unsplash.com/photo-1592478411213-6153e4ebc696?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["Unity", "C#", "WebXR"],
-    color: "neon-pink",
-  },
-  {
-    title: "SmartHome Hub",
-    description: "Intelligent home automation system with AI-driven energy optimization.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    tags: ["React", "Arduino", "MQTT"],
-    color: "electric-purple",
+    link: "https://writerscapes.netlify.app/landing.html",
+    category: "Website",
   },
 ];
 
@@ -57,7 +42,7 @@ export default function PortfolioSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.2,
       },
     },
   };
@@ -75,20 +60,27 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section id="portfolio" ref={ref} className="py-20">
+    <section id="projects" ref={ref} className="py-20">
       <div className="container mx-auto px-6">
         <motion.div
-          className="text-center mb-16"
+          className="flex items-center justify-between mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-6xl font-black text-gradient mb-6">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Explore my latest work showcasing cutting-edge technology and innovative design
-          </p>
+          <div>
+            <h2 className="text-4xl md:text-6xl font-black text-gradient mb-4">
+              Projects
+            </h2>
+          </div>
+          <motion.a
+            href="/projects"
+            target="_blank"
+            className="cyber-blue hover:text-white transition-colors"
+            whileHover={{ scale: 1.1 }}
+          >
+            <ArrowUpRight size={32} />
+          </motion.a>
         </motion.div>
         
         <motion.div
@@ -107,47 +99,62 @@ export default function PortfolioSection() {
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} project by frontend developer Pratham Bhayana`}
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                
+                {/* Project category tag */}
+                <div className="absolute top-4 left-4">
+                  <Badge variant="secondary" className="bg-black/50 text-white border-none">
+                    {project.category}
+                  </Badge>
+                </div>
+                
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                  <div className="p-6 w-full">
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center text-${project.color} hover:text-white transition-colors`}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="mr-2">View Live</span>
+                      <ExternalLink size={16} />
+                    </motion.a>
+                  </div>
+                </div>
               </div>
               
               <div className="p-6">
-                <h3 className={`text-xl font-bold ${project.color} mb-2`}>
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 mb-4">
+                <motion.a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <h3 className={`text-xl font-bold ${project.color} mb-2 hover:text-white transition-colors`}>
+                    {project.title}
+                  </h3>
+                </motion.a>
+                
+                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <Badge
                       key={tag}
                       variant="outline"
-                      className={`border-${project.color} text-${project.color}`}
+                      className={`border-${project.color}/30 text-${project.color} text-xs`}
                     >
                       {tag}
                     </Badge>
                   ))}
-                </div>
-                
-                <div className="flex space-x-4">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`text-${project.color} hover:text-white transition-colors`}
-                  >
-                    <Github className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`text-${project.color} hover:text-white transition-colors`}
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
                 </div>
               </div>
             </motion.div>
@@ -160,9 +167,16 @@ export default function PortfolioSection() {
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <Button className="glass-effect px-8 py-4 rounded-full border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 bg-transparent">
-            View All Projects
-          </Button>
+          <motion.a
+            href="/projects"
+            target="_blank"
+            className="inline-block"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Button className="glass-effect px-8 py-4 rounded-full border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 bg-transparent">
+              Click to View More
+            </Button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

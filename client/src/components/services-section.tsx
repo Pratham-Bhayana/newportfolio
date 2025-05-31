@@ -1,84 +1,39 @@
 import { motion } from "framer-motion";
-import { Monitor, Smartphone, Palette, Cloud, Brain, Lightbulb, Check } from "lucide-react";
+import { Globe, Lightbulb, Smartphone, Search } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { Button } from "@/components/ui/button";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const services = [
   {
-    title: "Web Development",
-    icon: Monitor,
+    title: "Websites",
+    icon: Globe,
     color: "cyber-blue",
-    description: "Custom web applications built with cutting-edge technologies for optimal performance and user experience.",
-    features: [
-      "React/Next.js Applications",
-      "Progressive Web Apps",
-      "E-commerce Solutions",
-      "API Development",
-    ],
+    description: "Pixel-perfect websites built to adapt seamlessly on all devices.",
   },
   {
-    title: "Mobile Development",
-    icon: Smartphone,
-    color: "neon-pink",
-    description: "Native and cross-platform mobile applications that deliver exceptional user experiences across all devices.",
-    features: [
-      "React Native Apps",
-      "iOS & Android Development",
-      "App Store Optimization",
-      "Mobile UI/UX Design",
-    ],
-  },
-  {
-    title: "UI/UX Design",
-    icon: Palette,
-    color: "electric-purple",
-    description: "User-centered design solutions that combine aesthetics with functionality for maximum engagement.",
-    features: [
-      "User Research & Analysis",
-      "Wireframing & Prototyping",
-      "Visual Design Systems",
-      "Usability Testing",
-    ],
-  },
-  {
-    title: "Cloud Solutions",
-    icon: Cloud,
-    color: "cyber-blue",
-    description: "Scalable cloud infrastructure and deployment solutions for modern applications and enterprise systems.",
-    features: [
-      "AWS/Azure Deployment",
-      "DevOps & CI/CD",
-      "Microservices Architecture",
-      "Performance Optimization",
-    ],
-  },
-  {
-    title: "AI/ML Integration",
-    icon: Brain,
-    color: "neon-pink",
-    description: "Intelligent features powered by machine learning and artificial intelligence to enhance user experiences.",
-    features: [
-      "Recommendation Systems",
-      "Natural Language Processing",
-      "Computer Vision",
-      "Chatbot Development",
-    ],
-  },
-  {
-    title: "Technical Consulting",
+    title: "Branding",
     icon: Lightbulb,
+    color: "neon-pink",
+    description: "From logo to colors – building a visual identity that speaks for your brand.",
+  },
+  {
+    title: "Ecommerce",
+    icon: Smartphone,
     color: "electric-purple",
-    description: "Strategic technology consulting to help businesses make informed decisions about their digital transformation.",
-    features: [
-      "Technology Strategy",
-      "Architecture Review",
-      "Code Auditing",
-      "Team Training",
-    ],
+    description: "Eye-catching layouts that highlight your product features and drive sales.",
+  },
+  {
+    title: "SEO",
+    icon: Search,
+    color: "cyber-blue",
+    description: "Improve meta tags, headings, alt attributes, URL structure & more.",
   },
 ];
 
 export default function ServicesSection() {
   const { ref, isVisible } = useIntersectionObserver();
+  const scrollTo = useSmoothScroll();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,47 +69,61 @@ export default function ServicesSection() {
           <h2 className="text-4xl md:text-6xl font-black text-gradient mb-6">
             Services
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Comprehensive digital solutions tailored to your business needs
-          </p>
         </motion.div>
         
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
-          {services.map((service) => {
+          {services.map((service, index) => {
             const IconComponent = service.icon;
+            const isEven = index % 2 === 0;
+            
             return (
               <motion.div
                 key={service.title}
-                className={`glass-effect p-8 rounded-2xl text-center group hover:border-${service.color} transition-all duration-300`}
+                className={`glass-effect p-8 rounded-2xl group hover:border-${service.color} transition-all duration-300 ${
+                  isEven ? '' : 'md:mt-12'
+                }`}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -10 }}
               >
-                <motion.div
-                  className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-${service.color} to-electric-purple rounded-full flex items-center justify-center`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <IconComponent className="text-2xl text-white" size={32} />
-                </motion.div>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-3xl font-bold">{service.title}</h3>
+                  
+                  <div className="relative">
+                    <motion.div
+                      className={`w-16 h-16 bg-gradient-to-r from-${service.color} to-electric-purple rounded-full flex items-center justify-center`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <IconComponent className="text-white" size={32} />
+                    </motion.div>
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className={`absolute -bottom-2 -right-2 text-xs text-${service.color} hover:text-white bg-transparent border border-${service.color} rounded-full px-3 py-1`}
+                      onClick={() => scrollTo("#contact")}
+                    >
+                      contact
+                    </Button>
+                  </div>
+                </div>
                 
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-300 mb-6 leading-relaxed">
                   {service.description}
                 </p>
                 
-                <ul className="text-left space-y-2 text-gray-300">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <Check className={`text-${service.color} mr-2 flex-shrink-0`} size={16} />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <Button
+                  variant="outline"
+                  className={`border-${service.color} text-${service.color} hover:bg-${service.color} hover:text-black transition-all duration-300`}
+                  onClick={() => scrollTo("#projects")}
+                >
+                  See Projects
+                </Button>
               </motion.div>
             );
           })}

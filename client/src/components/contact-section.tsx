@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Phone, Github, Instagram, Twitter, Linkedin, Globe, Lightbulb, Smartphone, Search } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -32,31 +33,38 @@ export default function ContactSection() {
     form.reset();
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "pratham@example.com",
-      color: "cyber-blue",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      color: "neon-pink",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "San Francisco, CA",
-      color: "electric-purple",
-    },
+  const services = [
+    { id: "websites", label: "Websites", icon: Globe },
+    { id: "branding", label: "Branding", icon: Lightbulb },
+    { id: "ecommerce", label: "Ecommerce", icon: Smartphone },
+    { id: "seo", label: "SEO", icon: Search },
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", color: "from-blue-600 to-blue-700" },
-    { icon: Github, href: "#", color: "from-gray-700 to-gray-800" },
-    { icon: Twitter, href: "#", color: "from-blue-400 to-blue-500" },
+    { 
+      icon: Github, 
+      href: "https://github.com/Pratham-Bhayana/Pratham-Bhayana/", 
+      color: "from-gray-700 to-gray-800",
+      label: "GitHub"
+    },
+    { 
+      icon: Instagram, 
+      href: "https://www.instagram.com/pratham_bhayana/", 
+      color: "from-pink-500 to-purple-600",
+      label: "Instagram"
+    },
+    { 
+      icon: Twitter, 
+      href: "", 
+      color: "from-blue-400 to-blue-500",
+      label: "Twitter"
+    },
+    { 
+      icon: Linkedin, 
+      href: "https://www.linkedin.com/in/pratham-bhayana-210629325/", 
+      color: "from-blue-600 to-blue-700",
+      label: "LinkedIn"
+    },
   ];
 
   const containerVariants = {
@@ -81,6 +89,15 @@ export default function ContactSection() {
     },
   };
 
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/img/Resume.pdf';
+    link.download = 'Pratham_Bhayana_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="contact" ref={ref} className="py-20">
       <div className="container mx-auto px-6">
@@ -91,149 +108,171 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-6xl font-black text-gradient mb-6">
-            Get In Touch
+            Say Hi
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project
-          </p>
         </motion.div>
         
         <motion.div
-          className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto"
+          className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
-          {/* Contact Info */}
-          <div className="space-y-8">
-            {contactInfo.map((info) => {
-              const IconComponent = info.icon;
-              return (
-                <motion.div
-                  key={info.title}
-                  className="glass-effect p-6 rounded-2xl"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-r from-${info.color} to-electric-purple rounded-full flex items-center justify-center`}>
-                      <IconComponent className="text-white" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">{info.title}</h3>
-                      <p className="text-gray-300">{info.value}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-            
-            {/* Social Links */}
-            <motion.div
-              className="glass-effect p-6 rounded-2xl"
-              variants={itemVariants}
-            >
-              <h3 className="text-xl font-bold mb-4">Connect With Me</h3>
+          {/* Services Column */}
+          <motion.div className="space-y-8" variants={itemVariants}>
+            <div className="glass-effect p-8 rounded-2xl">
+              <h3 className="text-2xl font-bold cyber-blue mb-6">Services</h3>
+              <ul className="space-y-4">
+                {services.map((service) => (
+                  <li key={service.id} className="text-gray-300 hover:text-cyber-blue transition-colors cursor-pointer">
+                    {service.label}
+                  </li>
+                ))}
+                <li>
+                  <button 
+                    onClick={handleResumeDownload}
+                    className="text-gray-300 hover:text-cyber-blue transition-colors"
+                  >
+                    My Resume
+                  </button>
+                </li>
+              </ul>
+              
+              <h4 className="text-xl font-bold neon-pink mt-8 mb-4">Stay connected</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <motion.button
+                    <motion.a
                       key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
+                      aria-label={social.label}
                     >
                       <IconComponent className="text-white" size={20} />
-                    </motion.button>
+                    </motion.a>
                   );
                 })}
               </div>
-            </motion.div>
-          </div>
+              
+              <h4 className="text-xl font-bold electric-purple mt-8 mb-4">Start a project</h4>
+              <p className="text-gray-300">I'm available for freelance projects</p>
+            </div>
+          </motion.div>
           
-          {/* Contact Form */}
-          <motion.div
-            className="glass-effect p-8 rounded-2xl"
-            variants={itemVariants}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          {/* About & Contact Info Column */}
+          <motion.div className="space-y-8" variants={itemVariants}>
+            <div className="glass-effect p-8 rounded-2xl">
+              <h3 className="text-2xl font-bold cyber-blue mb-6">About</h3>
+              <p className="text-gray-300 mb-6">
+                I am a professional web developer. Feel free to get in touch with me.
+              </p>
+              
+              <div className="space-y-6">
                 <div>
-                  <Label htmlFor="firstName" className="text-gray-300 mb-2">
-                    First Name
+                  <h4 className="text-xl font-bold neon-pink mb-2">Email</h4>
+                  <a 
+                    href="mailto:pratham.bhayana@outlook.com"
+                    className="text-gray-300 hover:text-cyber-blue transition-colors"
+                  >
+                    pratham.bhayana<br />@outlook.com
+                  </a>
+                </div>
+                
+                <div>
+                  <h4 className="text-xl font-bold electric-purple mb-2">Call</h4>
+                  <a 
+                    href="tel:+918595873470"
+                    className="text-gray-300 hover:text-cyber-blue transition-colors"
+                  >
+                    +91 8595873470
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* Contact Form Column */}
+          <motion.div className="lg:col-span-1" variants={itemVariants}>
+            <div className="glass-effect p-8 rounded-2xl">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name" className="text-gray-300 mb-2">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Name"
+                      className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-gray-300 mb-2">
+                      Email address
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Email address"
+                      className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {services.map((service) => {
+                    const IconComponent = service.icon;
+                    return (
+                      <div key={service.id} className="flex items-center space-x-2">
+                        <Checkbox 
+                          id={service.id}
+                          name={service.id}
+                          className="border-gray-600"
+                        />
+                        <Label 
+                          htmlFor={service.id} 
+                          className="text-gray-300 flex items-center space-x-2 text-sm"
+                        >
+                          <IconComponent size={16} className="cyber-blue" />
+                          <span>{service.label}</span>
+                        </Label>
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                <div>
+                  <Label htmlFor="message" className="text-gray-300 mb-2">
+                    Tell me about the project
                   </Label>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    placeholder="John"
+                  <Textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    placeholder="Tell me about the project"
                     className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
                     required
                   />
                 </div>
-                <div>
-                  <Label htmlFor="lastName" className="text-gray-300 mb-2">
-                    Last Name
-                  </Label>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Doe"
-                    className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Label htmlFor="email" className="text-gray-300 mb-2">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="john@example.com"
-                  className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
-                  required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="subject" className="text-gray-300 mb-2">
-                  Subject
-                </Label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="Project Inquiry"
-                  className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
-                  required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="message" className="text-gray-300 mb-2">
-                  Message
-                </Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  placeholder="Tell me about your project..."
-                  className="bg-slate-dark border-gray-600 focus:border-cyber-blue"
-                  required
-                />
-              </div>
-              
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full glass-effect px-8 py-4 rounded-lg border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 font-semibold bg-transparent"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+                
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full glass-effect px-8 py-4 rounded-lg border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 font-semibold bg-transparent"
+                >
+                  {isSubmitting ? "Sending..." : "Send"}
+                </Button>
+              </form>
+            </div>
           </motion.div>
         </motion.div>
       </div>

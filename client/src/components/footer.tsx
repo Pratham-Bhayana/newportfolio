@@ -4,8 +4,8 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 const footerLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#portfolio", label: "Portfolio" },
   { href: "#services", label: "Services" },
+  { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -27,11 +27,11 @@ export default function Footer() {
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollTo("#home")}
           >
-            PB
+            Pratham Bhayana
           </motion.div>
           
           <p className="text-gray-400 mb-6">
-            Crafting digital experiences for the future
+            From New Delhi, India.
           </p>
           
           <motion.div
@@ -61,7 +61,7 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <p className="text-gray-500">
-              © 2024 Pratham Bhayana. All rights reserved.
+              © copyright 2025 All rights reserved
             </p>
           </motion.div>
         </div>

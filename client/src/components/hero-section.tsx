@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { Button } from "@/components/ui/button";
 
@@ -64,41 +63,110 @@ export default function HeroSection() {
       </div>
       
       <motion.div
-        className="container mx-auto px-6 text-center relative z-10"
+        className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1
-          className="text-5xl md:text-7xl font-black mb-6 text-gradient"
-          variants={itemVariants}
-        >
-          PRATHAM BHAYANA
-        </motion.h1>
+        <div className="text-left">
+          <motion.div
+            className="text-lg cyber-blue font-mono mb-4"
+            variants={itemVariants}
+          >
+            Hello Everyone!
+          </motion.div>
+          
+          <motion.h1
+            className="text-5xl md:text-7xl font-black mb-6 text-gradient"
+            variants={itemVariants}
+          >
+            PRATHAM BHAYANA
+          </motion.h1>
+          
+          <motion.p
+            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl"
+            variants={itemVariants}
+          >
+            I'm Front-end developer available for freelance work.
+          </motion.p>
+          
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4"
+            variants={itemVariants}
+          >
+            <Button
+              className="glass-effect px-8 py-4 rounded-full border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 animate-glow bg-transparent"
+              onClick={() => scrollTo("#projects")}
+            >
+              Projects
+            </Button>
+            <Button
+              className="glass-effect px-8 py-4 rounded-full border-2 border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-black transition-all duration-300 bg-transparent"
+              onClick={() => scrollTo("#contact")}
+            >
+              Get In Touch
+            </Button>
+          </motion.div>
+        </div>
         
-        <motion.p
-          className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
-          variants={itemVariants}
-        >
-          Full Stack Developer & UI/UX Designer crafting digital experiences for the future
-        </motion.p>
-        
+        {/* Hero Animation Area */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="relative flex justify-center items-center"
           variants={itemVariants}
         >
-          <Button
-            className="glass-effect px-8 py-4 rounded-full border-2 border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 animate-glow bg-transparent"
-            onClick={() => scrollTo("#portfolio")}
-          >
-            View Portfolio
-          </Button>
-          <Button
-            className="glass-effect px-8 py-4 rounded-full border-2 border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-black transition-all duration-300 bg-transparent"
-            onClick={() => scrollTo("#contact")}
-          >
-            Get In Touch
-          </Button>
+          <div className="relative w-80 h-80 md:w-96 md:h-96">
+            {/* 3D Holographic effect */}
+            <motion.div
+              className="absolute inset-0 border-2 border-cyber-blue rounded-full opacity-30"
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ 
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
+            />
+            <motion.div
+              className="absolute inset-4 border border-neon-pink rounded-full opacity-20"
+              animate={{ 
+                rotate: -360,
+                scale: [1, 0.9, 1],
+              }}
+              transition={{ 
+                rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+            />
+            
+            {/* Central avatar area */}
+            <div className="absolute inset-12 bg-gradient-to-br from-cyber-blue/20 to-neon-pink/20 rounded-full flex items-center justify-center glass-effect">
+              <div className="text-6xl font-bold text-gradient">PB</div>
+            </div>
+            
+            {/* Floating code elements */}
+            <motion.div
+              className="absolute -top-4 -right-4 glass-effect p-2 rounded-lg text-xs font-mono cyber-blue"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+            >
+              React
+            </motion.div>
+            <motion.div
+              className="absolute -bottom-4 -left-4 glass-effect p-2 rounded-lg text-xs font-mono neon-pink"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+            >
+              JS
+            </motion.div>
+            <motion.div
+              className="absolute top-1/2 -left-8 glass-effect p-2 rounded-lg text-xs font-mono electric-purple"
+              animate={{ x: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+            >
+              CSS
+            </motion.div>
+          </div>
         </motion.div>
       </motion.div>
       
